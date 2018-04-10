@@ -1,0 +1,78 @@
+body {
+    background-image: url("topography.png");
+    color: #333333;
+    margin: 0px;
+}
+
+main {    
+    padding: 0% 10%;
+    display: block;
+}
+
+p {    
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    color: rgb(253, 114, 253);
+}
+
+nav {    
+    color: rgb(253, 114, 253);
+    padding: 5px 0px;
+}
+
+nav ul li {
+    display: inline;
+    list-style-type: none;
+    padding: 20px 15px;
+}
+
+nav a:visited {
+    color: rgb(253, 114, 253);   
+}
+nav a:hover {
+    color: purple;   
+}
+
+.header {
+    background: #333333; 
+    position: relative;     /*jó lenne, ha fixed lehetne :( */
+    width: 100%;
+    height: 50px;
+
+}
+
+.icon {
+    background-image: url(aperture.svg), none;
+    width: 40%;
+    height: 50px;
+    color: yellow;
+    position: absolute;
+    left: 10%;
+    top: 20%;  
+}
+.menu {
+    align-content: right;
+    position: absolute;
+    height: 50px;
+    width: 40%;
+    right: 0px;    
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto Slab', serif;
+}
+h2 {
+    text-align: center;    
+    line-height: 80%;
+}
+#aboutme {
+    color: rgb(186, 75, 230);
+}
+
+hr {
+    border-top: dashed 1.5px;
+    width: 20px;
+    margin: 50px auto;
+}

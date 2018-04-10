@@ -1,0 +1,6 @@
+[0406/092620.926:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\temp\settings.dat: A hozzáférés megtagadva. (0x5)
+[0406/092620.932:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: A pipe használata befejezõdött. (0x6D)
+[0406/092620.934:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\temp\settings.dat: A hozzáférés megtagadva. (0x5)
+[0406/211607.736:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\temp\settings.dat: A hozzáférés megtagadva. (0x5)
+[0406/211607.736:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: A pipe használata befejezõdött. (0x6D)
+[0406/211607.736:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\temp\settings.dat: A hozzáférés megtagadva. (0x5)
