@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-/*        // Modify this program to greet you instead of the World!
+        // Modify this program to greet you instead of the World!
         System.out.println("Hello Me!");
 
         // Modify this program to print Humpty Dumpty riddle correctly
@@ -293,15 +293,15 @@ public class Main {
         }
 
 //25 - MultiplicationTable
-*/
+
         Scanner scan2 = new Scanner(System.in);
- /*       System.out.print("I'll give you the multiplication table, but to which number? ");
+       System.out.print("I'll give you the multiplication table, but to which number? ");
         int multiplicationNum=scan2.nextInt();
         for (int i=0;i<10;i++)
         {
             System.out.println((i+1)+" * "+multiplicationNum+" = "+(multiplicationNum*(i+1)));
         }
-*/
+
 //26 - CountFromTo
 
         System.out.print("I can count from any number up to any other number! Wanna try? Gimme 2 numbers: ");
@@ -314,38 +314,231 @@ public class Main {
         }
 //27 - FizzBuzz
 
+        for (int i=1;i<=100;i++) {
+            if (i % 3 == 0) {
+                if (i % 5 == 0) {
+                    System.out.println("FizzBuzz");
+                } else
+                {System.out.println("Fizz");}
+
+            } else if (i % 5 == 0) {
+                System.out.println("Buzz");
+            } else {System.out.println(i);}
+        }
 
 
 //28 - DrawTriangle
 
+        System.out.println("I'll draw you a wonderful right-angled triangle. Just give me one of its side.");
+        int triangleRows = scan2.nextInt();
+        for (int i=0;i<triangleRows;i++)
+        {
+            for (int j=0;j<=i;j++)
+            {
+                System.out.print("*");
+            }
+                System.out.println();
+        }
 
 //29 - DrawPyramid 💪
 
-
+        System.out.println("I can draw pyramid too. Wanna see? How big should it be?");
+        int pyramidRows = scan2.nextInt();
+        for (int i=1;i<=pyramidRows;i++)
+        {
+            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            {
+                System.out.print(" ");
+            }
+            for (int cs=0;cs<(i*2-1);cs++)
+            {
+                System.out.print("*");
+            }
+            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+        //hullára biztos vagyok benne, hogy ennél egy SOKKAL egyszerűbb verzió is létezik...
+        //talán egy eggyel kisebb "space-háromszöget" kéne fejjel lefelé betenni a csillagok elé meg mögé
 
 //30 - DrawDiamond 💪
 
-
+        System.out.println("I can draw pyramid too. Wanna see? How big should it be?");
+        int pyramidRows = scan2.nextInt();
+        for (int i=1;i<=pyramidRows;i++)
+        {
+            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            {
+                System.out.print(" ");
+            }
+            for (int cs=0;cs<(i*2-1);cs++)
+            {
+                System.out.print("*");
+            }
+            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+        pyramidRows --;
+        for (int i=pyramidRows;i>=1;i--)
+        {
+            for (int j=((2*pyramidRows-1-(2*i-1))/2);j>=0;j--)
+            {
+                System.out.print(" ");
+            }
+            for (int cs=(i*2-1);cs>0;cs--)
+            {
+                System.out.print("*");
+            }
+            for (int j=((2*pyramidRows-1-(2*i-1))/2);j>=0;j--)
+            {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
 
 //31 - DrawSquare 💪
 
-
+        System.out.println("The pyramid was hard. Maybe I'll try a square, if you give me a side-size.");
+        int squareRows = scan2.nextInt();
+        for (int i=0;i<squareRows;i++)
+        {
+            System.out.print("%");
+        }
+        System.out.println();
+        for (int i=0;i<squareRows-2;i++)   //szerintem a minta hibás abból a szempontból, hogy téglalapot rajzol
+        {
+            System.out.print("%");
+            for (int j=0;j<(squareRows-2);j++)
+            {
+                System.out.print(" ");
+            }
+            System.out.println("%");
+        }
+        for (int i=0;i<squareRows;i++)
+        {
+            System.out.print("%");
+        }
+        System.out.println();
 
 //32 - DrawDiagonal
 
-
+        System.out.println("It isn't enough, is it. Okay, I'll draw one of the diagonals too. Gimme the side.");
+        int squareRows = scan2.nextInt();
+        for (int i=0;i<squareRows;i++)
+        {
+            System.out.print("%");
+        }
+        System.out.println();
+        for (int i=0;i<squareRows-2;i++)   //szerintem a minta hibás abból a szempontból, hogy téglalapot rajzol
+        {
+            System.out.print("%");
+            for (int j=0;j<(squareRows-2);j++)
+            {
+                if (j==i) {
+                    System.out.print("%");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("%");
+        }
+        for (int i=0;i<squareRows;i++)
+        {
+            System.out.print("%");
+        }
+        System.out.println();
 
 //33 - GuessTheNumber
 
+        int guessNumber=213;
+        System.out.println("I've tought about a number between 1-1000. Do you have a guess?");
+        Scanner guessScan = new Scanner(System.in);
+        int tip=guessScan.nextInt();
+        while (tip!=guessNumber) {
+            if (tip<guessNumber) {
+                System.out.println("The stored number is higher.");
+            } else {
+                System.out.println("The stored number is lower.");
+            }
+            tip=guessScan.nextInt();
+        }
+            System.out.println("You've found the number: "+guessNumber);
 
 
 //34 - ParametricAverage 💪 exam
 
+        System.out.println("How many numbers do you want me to make a statistic of?");
+        Scanner scanner = new Scanner(System.in);
+        int dataScale = scanner.nextInt();
+        int sum=0;
+        for (int i=0;i<dataScale;i++)
+        {
+            System.out.println("Your "+(i+1)+"th number: ");
+            sum += scanner.nextInt();
+        }
+        System.out.println("Sum: "+sum+", Average: "+(sum/dataScale));
 
 
 //35 - DrawChessTable
+        //egyszerűbb lenne kirajzolni kétsoronként, mint ciklusokkal vacakolni...
+
+        for (int i=0; i<8;i++)
+        {
+            for (int j=0; j<8;j++)
+            {
+                if (i%2==1)
+                {
+                    if (j%2==0) {
+                        System.out.print("%");
+                    } else {System.out.print(" ");}
+                } else {
+                    if (j % 2 == 1) {
+                        System.out.print("%");
+                    } else {
+                        System.out.print(" ");
+                    }
+                }
+            }
+            System.out.println();
+        }
+
+
+//Hard One: Find the substring
 
 
 
+
+        System.out.println(subStr("this is what I'm searching in", "searching"));
+
+    }
+
+    public static int subStr(String input, String q) {
+        boolean gotIt=false;
+        for (int i=0;i<input.length();i++)
+        {
+            for (int j=i;j<=input.length();j++)
+            {
+                if (input.substring(i,j).equals(q))
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+
+        /*
+        Question:
+        s1 == s2 returns true if both strings point to the same object in memory.
+        This is a common beginners mistake and is usually not what you want.
+        s1.equals(s2) returns true if both strings are physically equal
+        (i.e. they contain the same characters).
+
+        Then when will s1 == s2 happen?
+         */
     }
 }
