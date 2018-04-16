@@ -19,27 +19,13 @@ public class DrawDiagonal {
         int squareRows = scan2.nextInt();
         for (int i=0;i<squareRows;i++)
         {
-            System.out.print("%");
-        }
-        System.out.println();
-        for (int i=0;i<squareRows-2;i++)   //szerintem a minta hibás abból a szempontból, hogy téglalapot rajzol
-        {
-            System.out.print("%");
-            for (int j=0;j<(squareRows-2);j++)
-            {
-                if (j==i) {
+            for (int j=0;j<squareRows;j++) {
+                if (i==0 || j==0 || i==squareRows-1 || j==squareRows-1 || i==j)
                     System.out.print("%");
-                } else {
-                    System.out.print(" ");
-                }
+                else System.out.print(" ");
             }
-            System.out.println("%");
+            System.out.println();
         }
-        for (int i=0;i<squareRows;i++)
-        {
-            System.out.print("%");
-        }
-        System.out.println();
 
     }
 
