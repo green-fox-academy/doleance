@@ -11,14 +11,20 @@ public class RainbowBoxFunction {
         // and draws a square of that size and color to the center of the canvas.
         // Create a loop that fills the canvas with rainbow colored squares.
 
-        for (int i = 0; i < 5; i++) {
-            drawRainbowSquare(graphics, Math.random());
+        for (int i = 0; i < 10; i++) {
+            int[] RGB = new int[3];
+            for (int j = 0; j < 3; j++) {
+                RGB[j] = (int) (Math.random() * 256);
+            }
+            drawRainbowSquare(graphics, (int)(300 / (i + 1)), RGB);
         }
 
 
     }
 
-    private static void drawRainbowSquare(Graphics graphics, int size, int color) {
+    private static void drawRainbowSquare(Graphics graphics, int size, int[] color) {
+        graphics.setColor(new Color(color[0], color[1], color[2]));
+        graphics.fillRect((WIDTH - size) / 2, (HEIGHT - size) / 2, size, size);
     }
 
     // Don't touch the code below

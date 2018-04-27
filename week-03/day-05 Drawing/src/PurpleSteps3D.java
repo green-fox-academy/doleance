@@ -4,22 +4,34 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class Diagonals {
+public class PurpleSteps3D {
     public static void mainDraw(Graphics graphics) {
-        // Draw the canvas' diagonals.
-        // If it starts from the upper-left corner it should be green, otherwise it should be red.
-        graphics.setColor(Color.GREEN);
-        graphics.drawLine(0, 0, WIDTH, HEIGHT);
-        graphics.setColor(Color.RED);
-        graphics.drawLine(WIDTH, 0, 0, HEIGHT);
+
+        StepDrawer(graphics, 10);
+
     }
+
+    private static void StepDrawer(Graphics g, int tinyestCube) {
+        g.setColor(Color.MAGENTA);
+        int minOfPanel = Math.min(WIDTH, HEIGHT);
+        int sumLength = 0;
+        int size = tinyestCube;
+        boolean willItFit = true;
+        while (willItFit) {
+            g.fillRect(sumLength, sumLength, size, size);
+            sumLength += size;
+            size = (int)(size * 1.5);
+            willItFit = (sumLength + size < minOfPanel);
+        }
+    }
+
 
     // Don't touch the code below
     static int WIDTH = 320;
     static int HEIGHT = 343;
 
     public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Diagonals");
+        JFrame jFrame = new JFrame("Drawing");
         jFrame.setSize(new Dimension(WIDTH, HEIGHT));
         jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         jFrame.add(new ImagePanel());
