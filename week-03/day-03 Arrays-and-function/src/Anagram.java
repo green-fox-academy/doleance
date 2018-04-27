@@ -19,23 +19,22 @@ public class Anagram {
         word1 = String.valueOf(chars1);
         word2 = String.valueOf(chars2);
 
-        /*int i=0;
-        if (word1.length() == word2.length()) {
-            while ((word1.charAt(i) == word2.charAt(i)) && i < word1.length()) {
-                i++;
-            }
-        }
-        Ezt meg lehet valahogy így csinálni? Mert ez hibádzik kicsit.*/
-        int i;
-        for (i = 0; i < word1.length(); i++) {
-            if (word1.charAt(i) != word2.charAt(i))
-            {break;}
-        }
-
-        if (i == word1.length()) {
+        if (areTheyAnagrams(word1, word2)) {
             System.out.println("Yes, they are anagrams, congrats! <3");
         } else {
             System.out.println("Sorry, try harder. :(");
         }
     }
+
+    private static boolean areTheyAnagrams(String word1, String word2) {
+        boolean areTheyReally = true;
+        for (int i = 0; i < word1.length(); i++) {
+            if (word1.charAt(i) != word2.charAt(i)) {
+                areTheyReally = false;
+                break;
+            }
+        }
+        return areTheyReally;
+    }
+
 }

@@ -9,11 +9,11 @@
 
 public class AppendAFunc {
     public static void main(String[] args) {
-        String am="kuty";
+        String am = "kuty";
         System.out.println(appendA(am));
     }
 
     private static String appendA(String wordWithoutA) {
-        return wordWithoutA+"a";
+        return wordWithoutA + "a";
     }
 }

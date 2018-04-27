@@ -34,7 +34,5 @@ public class Bubble {
             revArray[array.length - i - 1] = array[i];
         }
         return revArray;
-        //vagy megcsinálom azzal, amikor length/2-ig megyek, és felcserélem az i-ediket a length-i(-1) edikkel.
-        //Melyik hatékonyabb?
     }
 }

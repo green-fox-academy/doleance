@@ -21,7 +21,7 @@ public class DrawDiamond {
         int pyramidRows = scan2.nextInt();
         for (int i=1;i<=pyramidRows;i++)
         {
-            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            for (int j=0;j<(pyramidRows-i);j++)
             {
                 System.out.print(" ");
             }
@@ -29,26 +29,18 @@ public class DrawDiamond {
             {
                 System.out.print("*");
             }
-            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
-            {
-                System.out.print(" ");
-            }
             System.out.println();
         }
         pyramidRows --;
         for (int i=pyramidRows;i>=1;i--)
         {
-            for (int j=((2*pyramidRows-1-(2*i-1))/2);j>=0;j--)
+            for (int j=(pyramidRows - i);j>=0;j--)
             {
                 System.out.print(" ");
             }
             for (int cs=(i*2-1);cs>0;cs--)
             {
                 System.out.print("*");
-            }
-            for (int j=((2*pyramidRows-1-(2*i-1))/2);j>=0;j--)
-            {
-                System.out.print(" ");
             }
             System.out.println();
         }

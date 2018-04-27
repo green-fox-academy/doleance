@@ -18,8 +18,33 @@
 //
 //Congratulations. You won!
 
+import java.util.Scanner;
+
 public class GuessMyNumber {
     public static void main(String[] args) {
+
+        int lives = 0;
+        String level;
+        int boundLower; int boundUpper;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Welcome in my GuessGame. Do you want to play easy, medium or hard? (e/m/h)");
+        level = scan.nextLine();
+        if (level.equals("e")) {
+            lives=-2;
+        } else if (level.equals("m")) {
+            lives = 10;
+        } else {
+            lives = 5;
+        }
+        if (lives == -2) {
+            System.out.println("Okay, you have infinite lives.");
+        } else {
+            System.out.printf("Okay, you have %d lives.%n", lives);
+        }
+
+
+
 
     }
 }

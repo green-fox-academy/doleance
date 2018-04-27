@@ -10,8 +10,7 @@ public class Reverse {
     }
 
     private static void reverseArrayElement(int[] array) {
-        for(int i = 0; i < array.length / 2; i++)
-        {
+        for (int i = 0; i < array.length / 2; i++) {
             int temp = array[i];
             array[i] = array[array.length - 1 - i];
             array[array.length - 1 - i] = temp;
@@ -19,8 +18,8 @@ public class Reverse {
     }
 
     private static void printArray(int[] array) {
-        for (int e: array) {
-            System.out.print(e+" ");
+        for (int e : array) {
+            System.out.print(e + " ");
         }
     }
 }

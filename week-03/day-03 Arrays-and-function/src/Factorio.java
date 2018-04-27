@@ -10,9 +10,9 @@ public class Factorio {
         
     }
 
-    private static int factorio(int n) {
+    private static int factorio(int firstHowManyNaturalNumber) {
         int fact=1;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < firstHowManyNaturalNumber; i++) {
             fact *= i+1;
         }
         return fact;

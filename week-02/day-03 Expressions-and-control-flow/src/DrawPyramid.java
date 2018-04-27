@@ -20,7 +20,7 @@ public class DrawPyramid {
         int pyramidRows = scan2.nextInt();
         for (int i=1;i<=pyramidRows;i++)
         {
-            for (int j=0;j<((2*pyramidRows-1-(2*i-1))/2);j++)
+            for (int j=0;j<(pyramidRows-i);j++)
             {
                 System.out.print(" ");
             }
