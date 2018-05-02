@@ -23,7 +23,7 @@ public class Palindrome {
         String[] foundPalindromes = new String[palindromeWord.length()];
         int db = 0;
         for (int i = 0; i < palindromeWord.length(); i++) {
-            for (int j = i + 2; j < palindromeWord.length(); j++) {
+            for (int j = i + 2; j <= palindromeWord.length(); j++) {
                 if (ifPalindrome(palindromeWord.substring(i,j))) {
                     foundPalindromes[db] = palindromeWord.substring(i,j);
                     db++;
@@ -35,7 +35,7 @@ public class Palindrome {
         } else {
             System.out.println("Wow, we've got a couple of palindromes. Here:");
             for (int i = 0; i < db; i++) {
-                System.out.println(Arrays.toString(foundPalindromes));
+                System.out.print("\"" + foundPalindromes[i] + "\", ");
             }
         }
     }
