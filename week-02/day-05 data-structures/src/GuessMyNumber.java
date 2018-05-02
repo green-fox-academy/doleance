@@ -21,20 +21,57 @@
 import java.util.Scanner;
 
 public class GuessMyNumber {
+
     public static void main(String[] args) {
 
-        int lives = 0;
-        String level = "";
-        int boundLower = 0; int boundUpper = 0;
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome in my GuessGame.");
-        defineLevel(level, lives);
-        System.out.println(lives+" "+level);
-        defineRange(boundLower, boundUpper);
+        char wannaPlay;
+
+        do {
+            int lives = defineLevel(scan);
+            int myNumber = defineRange(scan);
+            boolean won = false;
+
+            System.out.println("Now, let's start the game!");
+            while (lives != 0) {
+                System.out.print("What's your guess? ");
+                int tempGuess = scan.nextInt();
+                lives--;
+                if (tempGuess > myNumber) {
+                    System.out.println("Too high. " + yourLifes(lives));
+                } else if (tempGuess < myNumber) {
+                    System.out.println("Too low. " + yourLifes(lives));
+                } else {
+                    System.out.println("Congratulations! You won!");
+                    lives = 0;
+                    won = true;
+                }
+            }
+            if (!won) {
+                System.out.print ("Sorry, maybe next time.");
+            }
+            System.out.println(" Wanna play again? (y/n) ");
+            wannaPlay = scan.next().charAt(0);
+        } while (wannaPlay == 'y');
+
     }
 
-    private static void defineLevel(String level, int lives) {
-        Scanner scan = new Scanner(System.in);
+    private static String yourLifes(int lives) {
+        if (lives > 0) {
+            return lives + " life left.";
+        } else if (lives < 0) {
+            return "You have infinite lives, so keep going.";
+        } else {
+            return "";
+        }
+    }
+
+
+    private static int defineLevel(Scanner scan) {
+        int lives;
+        String level;
         System.out.println("Do you want to play easy, medium or hard? (e/m/h)");
         level = scan.nextLine();
         if (level.equals("e")) {
@@ -49,10 +86,14 @@ public class GuessMyNumber {
         } else {
             System.out.printf("Okay, you have %d lives.%n", lives);
         }
+        return lives;
     }
 
-    private static void defineRange(int min, int max) {
-
+    private static int defineRange(Scanner scan) {
+        int boundLower; int boundUpper;
+        System.out.println("Give me to bounds (a lower and an upper) in between I can think about number.");
+        boundLower = scan.nextInt(); boundUpper = scan.nextInt();
+        return (int)((Math.random() * boundUpper) + boundLower);
     }
 
 }
