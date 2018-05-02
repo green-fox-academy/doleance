@@ -24,11 +24,18 @@ public class GuessMyNumber {
     public static void main(String[] args) {
 
         int lives = 0;
-        String level;
-        int boundLower; int boundUpper;
-        Scanner scan = new Scanner(System.in);
+        String level = "";
+        int boundLower = 0; int boundUpper = 0;
 
-        System.out.println("Welcome in my GuessGame. Do you want to play easy, medium or hard? (e/m/h)");
+        System.out.println("Welcome in my GuessGame.");
+        defineLevel(level, lives);
+        System.out.println(lives+" "+level);
+        defineRange(boundLower, boundUpper);
+    }
+
+    private static void defineLevel(String level, int lives) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Do you want to play easy, medium or hard? (e/m/h)");
         level = scan.nextLine();
         if (level.equals("e")) {
             lives=-2;
@@ -42,9 +49,10 @@ public class GuessMyNumber {
         } else {
             System.out.printf("Okay, you have %d lives.%n", lives);
         }
+    }
 
-
-
+    private static void defineRange(int min, int max) {
 
     }
+
 }
