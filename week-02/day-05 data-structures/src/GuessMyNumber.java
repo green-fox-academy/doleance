@@ -40,9 +40,9 @@ public class GuessMyNumber {
                 int tempGuess = scan.nextInt();
                 lives--;
                 if (tempGuess > myNumber) {
-                    System.out.println("Too high. " + yourLifes(lives));
+                    System.out.println("Too high. " + yourLives(lives));
                 } else if (tempGuess < myNumber) {
-                    System.out.println("Too low. " + yourLifes(lives));
+                    System.out.println("Too low. " + yourLives(lives));
                 } else {
                     System.out.println("Congratulations! You won!");
                     lives = 0;
@@ -53,12 +53,14 @@ public class GuessMyNumber {
                 System.out.print ("Sorry, maybe next time.");
             }
             System.out.println(" Wanna play again? (y/n) ");
-            wannaPlay = scan.next().charAt(0);
+            //System.out.println("@"+scan.nextLine()+"@");
+            scan.nextLine();
+            wannaPlay = scan.nextLine().charAt(0);
         } while (wannaPlay == 'y');
 
     }
 
-    private static String yourLifes(int lives) {
+    private static String yourLives(int lives) {
         if (lives > 0) {
             return lives + " life left.";
         } else if (lives < 0) {
