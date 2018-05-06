@@ -15,7 +15,7 @@ public class Garden {
         return howManyThirstyPlants;
     }
 
-    public void watering (int amount) {
+    public void watering(int amount) {
         System.out.println("Watering with " + amount);
         int amountDivider = thirstyPlants();
         try {
@@ -27,15 +27,18 @@ public class Garden {
         } catch (ArithmeticException zero) {
             System.out.println("There is no thirsty plant. You're an awesome gardener.");
         }
-        System.out.println();
     }
 
     public void gardenStatus() {
         for (Plant plant : plants) {
             if (plant.needsWater()) {
-                System.out.println("The " + plant.color + " " + plant.getClass() + " needs water.");
+                System.out.println("The " + plant.color + " " +
+                        String.valueOf(plant.getClass()).substring(String.valueOf(plant.getClass()).indexOf(" ") + 1, String.valueOf(plant.getClass()).length())
+                        + " needs water.");
             } else {
-                System.out.println("The " + plant.color + " " + plant.getClass() + " doesn't need water.");
+                System.out.println("The " + plant.color + " " +
+                        String.valueOf(plant.getClass()).substring(String.valueOf(plant.getClass()).indexOf(" ") + 1, String.valueOf(plant.getClass()).length())
+                        + " doesn't need water.");
             }
         }
         System.out.println();

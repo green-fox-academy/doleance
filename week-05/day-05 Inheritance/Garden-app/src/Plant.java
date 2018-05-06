@@ -1,9 +1,9 @@
 public class Plant {
 
-    String color;
-    double waterAmount;
-    double lessAmount;
-    int absorbRate;
+    protected String color;
+    protected double waterAmount;
+    protected double lessAmount;
+    protected double absorbRate;
 
     public Plant() {
         color = "whatever";

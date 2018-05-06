@@ -17,8 +17,11 @@ public class Main {
         myBeautifulGarden.gardenStatus();
 
         myBeautifulGarden.watering(40);
+        myBeautifulGarden.gardenStatus();
 
         myBeautifulGarden.watering(70);
+        myBeautifulGarden.gardenStatus();
+
 
     }
 
