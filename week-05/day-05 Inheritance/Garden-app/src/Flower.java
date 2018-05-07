@@ -7,16 +7,7 @@ public class Flower extends Plant{
     }
 
     public Flower(String color) {
-        super(color);
-    }
-
-    @Override
-    public boolean needsWater() {
-        return super.needsWater();
-    }
-
-    @Override
-    public void watering(int amount) {
-        super.watering(amount);
+        this();
+        this.color = color;
     }
 }
