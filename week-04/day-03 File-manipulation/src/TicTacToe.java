@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TicTacToe {
@@ -35,21 +34,42 @@ public class TicTacToe {
     }
 
     private static String searchingForTheResult(List<String> ticTacResult) {
-        boolean areTheSameInTheRow = true;
-        boolean areTheSameInTheColumn = true;
-        boolean areTheSameInDiagonal = true;
-        int howManyRows = ticTacResult.size();
-        for (int i = 0; i < howManyRows; i++) {
-            char firstChar = ticTacResult.get(i).charAt(0);
-            for (int j = 1; j < howManyRows; j++) {
-                areTheSameInTheRow = (ticTacResult.get(i).charAt(j) == ticTacResult.get(i).charAt(j - 1));
-                areTheSameInTheColumn = (ticTacResult.get(j).charAt(i) == ticTacResult.get(j - 1).charAt(i));
-                areTheSameInDiagonal = (ticTacResult.get(j).charAt(j) == ticTacResult.get(j - 1).charAt(j - 1));
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean areTheSameInTheRow = false;
+        boolean areTheSameInTheColumn = false;
+        boolean areTheSameInDiagonal = false;
+
+        int i = 0;
+        while ((i < 3) && (!areTheSameInTheRow) && (!areTheSameInTheColumn)) {
+            if (ticTacResult.get(i).charAt(0) == ticTacResult.get(i).charAt(1)) {
+                if (ticTacResult.get(i).charAt(1) == ticTacResult.get(i).charAt(2)) {
+                    areTheSameInTheRow = true;
+                    stringBuilder.append(ticTacResult.get(i).charAt(2));
+                    return stringBuilder.toString();
+                }
             }
-            if (areTheSameInTheRow || areTheSameInTheColumn || areTheSameInDiagonal) {
-                return ticTacResult.get(i).substring(howManyRows - 1);
+            if (ticTacResult.get(0).charAt(i) == ticTacResult.get(1).charAt(i)) {
+                if (ticTacResult.get(1).charAt(i) == ticTacResult.get(2).charAt(i)){
+                    areTheSameInTheColumn = true;
+                    stringBuilder.append(ticTacResult.get(2).charAt(i));
+                    return stringBuilder.toString();
+                }
+            }
+            i++;
+        }
+        if (ticTacResult.get(0).charAt(0) == ticTacResult.get(1).charAt(1)) {
+            if (ticTacResult.get(1).charAt(1) == ticTacResult.get(2).charAt(2)) {
+                stringBuilder.append(ticTacResult.get(1).charAt(1));
+                return stringBuilder.toString();
             }
         }
-        return "draw";
+        if (ticTacResult.get(0).charAt(2) == ticTacResult.get(1).charAt(1)) {
+            if (ticTacResult.get(1).charAt(1) == ticTacResult.get(2).charAt(0)) {
+                stringBuilder.append(ticTacResult.get(1).charAt(1));
+                return stringBuilder.toString();
+            }
+        }
+        return"draw";
     }
+
 }
