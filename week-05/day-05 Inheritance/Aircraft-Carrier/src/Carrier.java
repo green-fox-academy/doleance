@@ -16,21 +16,68 @@ public class Carrier {
         weapons.add(newWeapon);
     }
 
-    public void fill () {
-        try {
+    public void fill() throws Exception {
+        if (storedAmmo == 0) {
+            throw new Exception("We've ran out of ammo. :cold_sweat:");
+        } else {
             int remainedAmmo = storedAmmo;
             int i = 0;
-            while (!weapons.get(i).isPriority()) {
+            do {
+                if (weapons.get(i).isPriority()) {
+                    remainedAmmo = weapons.get(i).refill(remainedAmmo);
+                }
+                i++;
+            } while ((remainedAmmo > 0) && (i < weapons.size()));
+
+            i = 0;
+            while ((remainedAmmo > 0) && (i < weapons.size())) {
+                if (!(weapons.get(i).currAmmo == weapons.get(i).maxAmmo)) {
+                    remainedAmmo = weapons.get(i).refill(remainedAmmo);
+                }
                 i++;
             }
-            if (i < weapons.size()) {
-                remainedAmmo = weapons.get(i).refill(remainedAmmo);
-            }
-        } throw
+            storedAmmo = remainedAmmo;
+        }
     }
 
-    It should fill all the aircraft with ammo and substract the needed ammo from the ammo storage
-    If there is not enough ammo than it should start to fill the aircraftis with priority first
-    If there is no ammo when this method is called it should throw an exception
+    public void fight(Carrier enemy) {
+        int allDamage = 0;
+        for (Aircraft weap : this.weapons) {
+            allDamage += weap.fight();
+        }
+        enemy.healthPoint -= allDamage;
+    }
+
+    public int allDamage() {
+        int damageSum = 0;
+        for (Aircraft weap : this.weapons) {
+            damageSum += weap.currAmmo * weap.baseDamage;
+        }
+        return damageSum;
+    }
+
+    public String getStatus() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (healthPoint > 0) {
+            stringBuilder.append("HP:");
+            stringBuilder.append(healthPoint);
+            stringBuilder.append(", Aircraft count:");
+            stringBuilder.append(weapons.size());
+            stringBuilder.append(", Ammo Storage:");
+            stringBuilder.append(storedAmmo);
+            stringBuilder.append(", Total damage:");
+            stringBuilder.append(allDamage());
+        } else {
+            stringBuilder.replace(0, stringBuilder.length(), "It's dead, Jim.");
+        }
+        if (weapons.size() > 0) {
+            stringBuilder.append("\nAircrafts:\n");
+            for (Aircraft weap : weapons) {
+                stringBuilder.append(weap.getStatus());
+                stringBuilder.append("\n");
+            }
+        }
+        return stringBuilder.toString();
+    }
 
 }
