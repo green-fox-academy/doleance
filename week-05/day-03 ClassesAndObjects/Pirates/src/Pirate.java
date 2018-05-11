@@ -1,8 +1,8 @@
 public class Pirate {
 
-    private String name;
-    private int rumLoad;
-    private String state;  //awake, dozedoff, dead
+    String name;
+    int rumLoad;
+    String state;  //awake, dozedoff, dead
 
     Pirate() {
         state = "awake";
@@ -51,7 +51,7 @@ public class Pirate {
     }
 
     public void dead() {
-        System.out.println(name + "'s dead.");
+        System.out.println("He's dead.");
     }
 
     public void dozedoff() {
@@ -62,7 +62,7 @@ public class Pirate {
         int whoDies = (int)(Math.random() * 3);
         switch (whoDies) {
             case 0 : this.die(); return "Mi ded.";
-            case 1 : mate.die(); return mate.name + " ded.";
+            case 1 : mate.die(); return "He ded.";
             case 2 : this.state = "dozedoff"; mate.state = "dozedoff"; return "*%!$#zzZzzZzZzZ";
         }
         return null;
