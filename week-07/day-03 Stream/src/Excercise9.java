@@ -1,3 +1,4 @@
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Excercise9 {
@@ -6,7 +7,15 @@ public class Excercise9 {
 
         char[] charArray = {'c', 'h', 'a', 'r', 'a', 'r', 'r', 'a', 'y'};
 
-      //  Stream<Character> charStream = new String(charArray);
+        String stringFromCharArray = (String)IntStream
+                .range(0, charArray.length)
+                .mapToObj(i -> charArray[i])
+                .toString();
+
+
+        System.out.println(stringFromCharArray);
+        System.out.println(stringFromCharArray.getClass());
+
 
 
     }
