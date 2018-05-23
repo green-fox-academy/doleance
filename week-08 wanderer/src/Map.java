@@ -8,18 +8,16 @@ import java.util.List;
 
 public class Map {
 
-    int boardSize = 10;
     int[][] boardMatrix = new int[boardSize][boardSize];
-    Graphics graphics;
+    String mapFile = "maps/map0" + (int)(Math.random() * 2 + 1) + ".txt";
 
-    public Map() {
-        boardSetUp();
-        boardDraw();
+    public Map(Graphics graphics) {
+        boardSetUp(mapFile);
+        boardDraw(graphics);
     }
 
-    public void boardSetUp() {
-        int boardNumero = (int)(Math.random() * 2 + 1);
-        Path mapPath = Paths.get("maps/map0" + boardNumero + ".txt");
+    public void boardSetUp(String mapFile) {
+        Path mapPath = Paths.get(mapFile);
         List<String> fileContent = new ArrayList<String>();
         try {
             fileContent = Files.readAllLines(mapPath);
@@ -33,14 +31,16 @@ public class Map {
         }
     }
 
-    public void boardDraw() {
+    public void boardDraw(Graphics graphics) {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                if (boardMatrix[i][j] == 0) {
-                    PositionedImage imgFloor = new PositionedImage("wanderer-java/img/floor.png", i * 72, j * 72);
+                if (boardMatrix[i][j] == 1) {
+                    PositionedImage imgFloor = new PositionedImage(
+                            "wanderer-java/img/floor.png", i * 72, j * 72);
                     imgFloor.draw(graphics);
                 } else {
-                    PositionedImage imgWall = new PositionedImage("wanderer-java/img/wall.png", i * 72, j * 72);
+                    PositionedImage imgWall = new PositionedImage(
+                            "wanderer-java/img/wall.png", i * 72, j * 72);
                     imgWall.draw(graphics);
                 }
             }

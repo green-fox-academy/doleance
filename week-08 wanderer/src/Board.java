@@ -5,26 +5,27 @@ import java.awt.event.KeyListener;
 
 public class Board extends JComponent implements KeyListener {
 
-    int testBoxX = 72;
-    int testBoxY = 72;
+    //int testBoxX = 72;
+    //int testBoxY = 72;
+    int windowSize = 720;
+    int boardSize = 10;
+    int elementSize = windowSize / boardSize;
+    public boolean doWeHaveOneMoreStep = true;
 
     public Board() {
-
         // set the size of your draw board
-        setPreferredSize(new Dimension(720, 720));
+        setPreferredSize(new Dimension(windowSize, windowSize));
         setVisible(true);
-
-        Map map = new Map();
-
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        graphics.fillRect(testBoxX, testBoxY, 100, 100);
+        Map map = new Map(graphics);
+        //graphics.fillRect(testBoxX, testBoxY, 100, 100);
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
-        PositionedImage image = new PositionedImage("wanderer-java/img/floor.png", 300, 300);
+        PositionedImage image = new PositionedImage("wanderer-java/img/hero-down.png", 0, 0);
         image.draw(graphics);
     }
 
@@ -36,9 +37,6 @@ public class Board extends JComponent implements KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.pack();
-        // Here is how you can add a key event listener
-        // The board object will be notified when hitting any key
-        // with the system calling one of the below 3 methods
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
@@ -58,13 +56,13 @@ public class Board extends JComponent implements KeyListener {
     // But actually we can use just this one for our goals here
     @Override
     public void keyReleased(KeyEvent e) {
-        // When the up or down keys hit, we change the position of our box
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            testBoxY -= 100;
+            image -= 100;
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             testBoxY += 100;
         }
-        // and redraw to have a new picture with the new coordinates
+        if (doWeHaveOneMoreStep)
+            doWeHaveOneMoreStep = !doWeHaveOneMoreStep;
         repaint();
     }
 }
