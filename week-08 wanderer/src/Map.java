@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Map {
 
-    int[][] boardMatrix = new int[boardSize][boardSize];
+    int[][] boardMatrix = new int[GameProperties.BOARD_SIZE][GameProperties.BOARD_SIZE];
     String mapFile = "maps/map0" + (int)(Math.random() * 2 + 1) + ".txt";
 
     public Map(Graphics graphics) {
@@ -24,16 +24,16 @@ public class Map {
         } catch (IOException e) {
             System.out.println("This map isn't a map. I can't read.");
         }
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
+        for (int i = 0; i < GameProperties.BOARD_SIZE; i++) {
+            for (int j = 0; j < GameProperties.BOARD_SIZE; j++) {
                 boardMatrix[i][j] = (int)fileContent.get(i).charAt(j) - 48;
             }
         }
     }
 
     public void boardDraw(Graphics graphics) {
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
+        for (int i = 0; i < GameProperties.BOARD_SIZE; i++) {
+            for (int j = 0; j < GameProperties.BOARD_SIZE; j++) {
                 if (boardMatrix[i][j] == 1) {
                     PositionedImage imgFloor = new PositionedImage(
                             "wanderer-java/img/floor.png", i * 72, j * 72);
