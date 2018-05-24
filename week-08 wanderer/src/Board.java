@@ -5,9 +5,6 @@ import java.awt.event.KeyListener;
 
 public class Board extends JComponent implements KeyListener {
 
-    //int testBoxX = 72;
-    //int testBoxY = 72;
-
     public boolean doWeHaveOneMoreStep = true;
     GameObjects charsOnTheBoard;
 
@@ -15,12 +12,13 @@ public class Board extends JComponent implements KeyListener {
         charsOnTheBoard = new GameObjects();
         setPreferredSize(new Dimension(GameProperties.WINDOW_SIZE, GameProperties.WINDOW_SIZE));
         setVisible(true);
-        Map map = new Map(getGraphics());
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
+        Map map = new Map(graphics);
+
         PositionedImage image = new PositionedImage("wanderer-java/img/hero-down.png", 0, 0);
         image.draw(graphics);
     }
@@ -37,26 +35,27 @@ public class Board extends JComponent implements KeyListener {
         // this Board class (the type of the board object) is also a KeyListener
     }
 
-    // To be a KeyListener the class needs to have these 3 methods in it
+    // To be a KeyListener the class needs to have these 3 methods in it, but the last one is enough for us
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {    }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {    }
 
-    }
-
-    // But actually we can use just this one for our goals here
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-          //  image -= 100;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_W) {
+          charsOnTheBoard.charsOnBoard.get(0).move("up");
+        } else if (e.getKeyCode() == KeyEvent.VK_S) {
           //  testBoxY += 100;
+        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+            //  testBoxY += 100;
+        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+            //  testBoxY += 100;
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            //  testBoxY += 100;
         }
-        if (doWeHaveOneMoreStep) {
+        if (!doWeHaveOneMoreStep) {
             doWeHaveOneMoreStep = !doWeHaveOneMoreStep;
             for (int i = 1; i < charsOnTheBoard.charsOnBoard.size(); i++) {
                 charsOnTheBoard.charsOnBoard.get(i).move();

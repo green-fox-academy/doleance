@@ -3,15 +3,14 @@ public abstract class Character {
     int defendPoint;
     int strikePoint;
     int healthPoint;
-    int level = 1;
+    int pozX;
+    int pozY;
 
     public void die() {
 
     }
 
-    public void move() {
-
-    }
+    public abstract void move(String whereToMove);
 
     public void battleUp() {
         if (this.getClass() == Hero.class) {

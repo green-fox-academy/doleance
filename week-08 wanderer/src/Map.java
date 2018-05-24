@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Map {
 
-    int[][] boardMatrix = new int[GameProperties.BOARD_SIZE][GameProperties.BOARD_SIZE];
-    String mapFile = "maps/map0" + (int)(Math.random() * 2 + 1) + ".txt";
+    public int[][] boardMatrix = new int[GameProperties.BOARD_SIZE][GameProperties.BOARD_SIZE];
+    String mapFile = "maps/map0" + GameProperties.level + ".txt";
 
     public Map(Graphics graphics) {
         boardSetUp(mapFile);

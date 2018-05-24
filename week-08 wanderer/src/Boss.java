@@ -4,7 +4,7 @@ public class Boss extends Monster {
         super();
         maxHealthPoint += (int) (Math.random() * 6 + 1);
         defendPoint += (int) (Math.random() * 6 + 1) / 2;
-        strikePoint += level;
+        strikePoint += GameProperties.level;
         healthPoint = maxHealthPoint;
     }
 }
