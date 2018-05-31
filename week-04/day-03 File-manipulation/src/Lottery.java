@@ -12,17 +12,19 @@ public class Lottery {
         Map<Integer, Integer> lotteryNumbers = new HashMap<>();
 
         mapingNumberFrequency(path, lotteryNumbers);
-        System.out.println(mostFrequentNumbers(lotteryNumbers, 5).toArray().toString());
+        System.out.println("The most common lottery numbers:");
+        for ( Integer number : mostFrequentNumbers(lotteryNumbers, 5)) {
+            System.out.println(number + " (" + lotteryNumbers.get(number) + " times) ");
+        }
     }
 
     private static ArrayList<Integer> mostFrequentNumbers(Map<Integer,Integer> lotteryNumbers, int howManyNumber) {
         ArrayList<Integer> mostFrequentNumbers = new ArrayList<>();
-        int arraySize = 0;
         int max = -1;
         do {
             max = findTheMaxFreq(lotteryNumbers, max);
-            findTheKeys(lotteryNumbers, mostFrequentNumbers, howManyNumber - arraySize, max);
-        } while (arraySize < howManyNumber);
+            findTheKeys(lotteryNumbers, mostFrequentNumbers, howManyNumber - mostFrequentNumbers.size(), max);
+        } while (mostFrequentNumbers.size() < howManyNumber);
         return  mostFrequentNumbers;
     }
 
