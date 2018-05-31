@@ -6,21 +6,29 @@ import java.awt.event.KeyListener;
 public class Board extends JComponent implements KeyListener {
 
     public boolean doWeHaveOneMoreStep = true;
-    GameObjects charsOnTheBoard;
+    static EnemyOnBoard enemies;
+    static Map map;
+    static Hero hero;
 
     public Board() {
-        charsOnTheBoard = new GameObjects();
+
         setPreferredSize(new Dimension(GameProperties.WINDOW_SIZE, GameProperties.WINDOW_SIZE));
         setVisible(true);
+
+
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        Map map = new Map(graphics);
-
-        PositionedImage image = new PositionedImage("wanderer-java/img/hero-down.png", 0, 0);
-        image.draw(graphics);
+        map = new Map(graphics);
+        map.boardDraw(graphics);
+        hero = new Hero(graphics);
+        hero.drawCharacter(graphics, hero.pozX, hero.pozY);
+        //   enemies = new EnemyOnBoard(graphics);
+      /*  for (Character enemy : enemies.enemyOnBoard) {
+            enemy.drawCharacter(graphics, enemy.pozX, enemy.pozY);
+        } */
     }
 
     public static void main(String[] args) {
@@ -31,36 +39,47 @@ public class Board extends JComponent implements KeyListener {
         frame.setVisible(true);
         frame.pack();
         frame.addKeyListener(board);
-        // Notice (at the top) that we can only do this because
-        // this Board class (the type of the board object) is also a KeyListener
+
+
     }
 
-    // To be a KeyListener the class needs to have these 3 methods in it, but the last one is enough for us
     @Override
-    public void keyTyped(KeyEvent e) {    }
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
-    public void keyPressed(KeyEvent e) {    }
+    public void keyPressed(KeyEvent e) {
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-          charsOnTheBoard.charsOnBoard.get(0).move("up");
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            hero.pozX += 200;
+            System.out.println(hero.pozX);
+        }
+
+        /*
+       if (e.getKeyCode() == KeyEvent.VK_W) {
+            //hero.picture = "wanderer-java/img/hero-left.png";
+            hero.move("up");
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
-          //  testBoxY += 100;
+            hero.move("down");
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            //  testBoxY += 100;
+            hero.move("left");
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            //  testBoxY += 100;
+            hero.move("right");
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             //  testBoxY += 100;
         }
         if (!doWeHaveOneMoreStep) {
             doWeHaveOneMoreStep = !doWeHaveOneMoreStep;
-            for (int i = 1; i < charsOnTheBoard.charsOnBoard.size(); i++) {
-                charsOnTheBoard.charsOnBoard.get(i).move();
+            for (Character enemy : enemies.enemyOnBoard) {
+                enemy.move("");
+                enemy.move("");
             }
         }
+         */
+
         repaint();
     }
 }

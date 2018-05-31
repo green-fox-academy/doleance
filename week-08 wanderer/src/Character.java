@@ -1,16 +1,33 @@
+import java.awt.*;
+
 public abstract class Character {
     int maxHealthPoint;
     int defendPoint;
     int strikePoint;
     int healthPoint;
-    int pozX;
-    int pozY;
+    int pozX = 1;
+    int pozY = 1;
+    String picture;
 
     public void die() {
 
     }
 
     public abstract void move(String whereToMove);
+
+    public boolean willIFallFromTheMap(int poz) {
+        if ((poz < 0) || poz >= GameProperties.BOARD_SIZE) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void drawCharacter(Graphics graphics, int pozX, int pozY) {
+        PositionedImage charImage = new PositionedImage(picture,
+                pozX * GameProperties.ELEMENT_SIZE, pozY * GameProperties.ELEMENT_SIZE);
+       charImage.draw(graphics);
+    }
 
     public void battleUp() {
         if (this.getClass() == Hero.class) {

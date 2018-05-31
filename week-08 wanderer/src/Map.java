@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Map {
 
-    public int[][] boardMatrix = new int[GameProperties.BOARD_SIZE][GameProperties.BOARD_SIZE];
+    public static int[][] boardMatrix = new int[GameProperties.BOARD_SIZE][GameProperties.BOARD_SIZE];
     String mapFile = "maps/map0" + GameProperties.level + ".txt";
 
     public Map(Graphics graphics) {
