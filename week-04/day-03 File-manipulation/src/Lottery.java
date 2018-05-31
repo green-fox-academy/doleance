@@ -12,28 +12,36 @@ public class Lottery {
         Map<Integer, Integer> lotteryNumbers = new HashMap<>();
 
         mapingNumberFrequency(path, lotteryNumbers);
-        System.out.println(mostFrequentNumbers(lotteryNumbers, 5));
-
-
-
-
+        System.out.println(mostFrequentNumbers(lotteryNumbers, 5).toArray().toString());
     }
 
-    private static int[] mostFrequentNumbers(Map<Integer,Integer> lotteryNumbers, int howManyNumber) {
-        int[] mostFrequentNumbers = new int[howManyNumber];
+    private static ArrayList<Integer> mostFrequentNumbers(Map<Integer,Integer> lotteryNumbers, int howManyNumber) {
+        ArrayList<Integer> mostFrequentNumbers = new ArrayList<>();
         int arraySize = 0;
+        int max = -1;
         do {
-            int max = findTheMaxFreq(lotteryNumbers, 1);
-            mostFrequentNumbers.findTheKeys(max);
+            max = findTheMaxFreq(lotteryNumbers, max);
+            findTheKeys(lotteryNumbers, mostFrequentNumbers, howManyNumber - arraySize, max);
         } while (arraySize < howManyNumber);
+        return  mostFrequentNumbers;
     }
 
-    private static int findTheMaxFreq(Map<Integer,Integer> lotteryNumbers, int BiggestFromBackwards) {
+    private static void findTheKeys(Map<Integer, Integer> lotteryNumbers, ArrayList<Integer> numberArray, int howManyToGo, int max) {
+        for (Map.Entry<Integer, Integer> entry : lotteryNumbers.entrySet()) {
+            if ((entry.getValue() == max) && (howManyToGo > 0)) {
+                numberArray.add(entry.getKey());
+                howManyToGo--;
+            }
+        }
+    }
+
+    private static int findTheMaxFreq(Map<Integer,Integer> lotteryNumbers, int lastBiggest) {
         Integer max = null;
         for (Map.Entry<Integer, Integer> entry : lotteryNumbers.entrySet()) {
 
             if (max == null
-                    || entry.getValue().compareTo(max) > 0) {
+                    || ((entry.getValue().compareTo(max) > 0) &&
+                    ((entry.getValue() < lastBiggest) || (lastBiggest == -1)))) {
                 max = entry.getValue();
             }
         }
