@@ -1,0 +1,37 @@
+https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-exercise-sql_movie_query_core/
+
+Q1
+SELECT DISTINCT name FROM Reviewer u
+INNER JOIN Rating r
+ON r.rID = u.rID
+INNER JOIN Movie m
+ON m.mID = r.mID
+WHERE title = "Gone with the Wind"
+
+Q2
+SELECT name, title, stars FROM Reviewer u
+INNER JOIN Rating r
+ON r.rID = u.rID
+INNER JOIN Movie m
+ON m.mID = r.mID
+WHERE name = director
+
+Q3
+SELECT * FROM (SELECT name FROM Reviewer UNION SELECT title FROM Movie)
+
+Q4
+
+
+Q5
+
+
+Q6
+
+
+Q7
+
+
+Q8
+
+
+Q9

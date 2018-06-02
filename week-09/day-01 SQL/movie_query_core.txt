@@ -1,0 +1,52 @@
+https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-exercise-sql_movie_query_core/
+
+Q1
+SELECT Title FROM Movie
+WHERE Director = "Steven Spielberg";
+
+Q2
+SELECT DISTINCT Year
+FROM Movie INNER JOIN Rating
+WHERE Movie.mID = Rating.mID
+AND Rating.stars >= 4
+ORDER BY Year ASC;
+
+Q3
+SELECT Title
+FROM Movie M LEFT JOIN Rating R
+ON M.mID = R.mID
+WHERE R.mID IS NULL;
+
+Q4
+SELECT name
+FROM Reviewer u INNER JOIN Rating r
+ON u.rID = r.rID
+WHERE ratingDate IS NULL;
+
+Q5
+SELECT name, title, stars, ratingDate
+FROM Movie m INNER JOIN Rating r
+ON m.mID = r.mID
+INNER JOIN Reviewer u
+ON u.rID = r.rID
+ORDER BY name, title, stars;
+
+Q6
+
+
+Q7
+SELECT Title, MAX(Stars)
+FROM Movie m
+INNER JOIN Rating r
+ON m.mID = r.mID
+GROUP BY Title
+ORDER BY Title
+
+Q8
+SELECT Title, (MAX(stars) - MIN(stars)) AS "Rating Spread"
+FROM Movie INNER JOIN Rating
+ON Movie.mID = Rating.mID
+GROUP BY Title
+ORDER BY "Rating Spread" DESC, Title
+
+Q9
