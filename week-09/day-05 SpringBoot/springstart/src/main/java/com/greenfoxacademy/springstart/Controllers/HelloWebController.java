@@ -29,7 +29,7 @@ public class HelloWebController {
         int helloNumero = (int)(Math.random() * hellos.length) - 1;
         model.addAttribute("hello", hellos[helloNumero]);
         model.addAttribute("name", name);
-        model.addAttribute("size", (int)(Math.random() * 20) + 6);
+        model.addAttribute("size", ("style=\"font-size:" + (int)(Math.random() * 20) + 6) + "px");
         return "web/greetings";
     }
 

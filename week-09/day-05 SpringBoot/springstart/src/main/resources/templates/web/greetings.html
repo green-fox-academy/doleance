@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content.</title>
+    <title>HelloWeb App</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<link rel="stylesheet" href="/css/HelloWebStyleSheet.css"/>-->
 </head>
 <body>
-<span style="color: red; absolute-size: ${size}pt">
-<p th:text="${hello} + ', ' + ${name} + '!'"/>
-</span>
+<div>
+    style="font-size:20px"
+    <span th:text="${hello} + ' ' + ${name} + '!'"/>
+</div>
+
 </body>
 </html>
