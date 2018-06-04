@@ -6,10 +6,9 @@
     <!--<link rel="stylesheet" href="/css/HelloWebStyleSheet.css"/>-->
 </head>
 <body>
-<div>
-    style="font-size:20px"
+<p th:style="'font-size:' +  ${size} + 'px;' + 'color:rgb(' + ${color} + ')'">
     <span th:text="${hello} + ' ' + ${name} + '!'"/>
-</div>
+</p>
 
 </body>
 </html>
