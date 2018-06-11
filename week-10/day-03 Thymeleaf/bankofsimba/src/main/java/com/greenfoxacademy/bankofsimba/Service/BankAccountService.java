@@ -24,7 +24,7 @@ public class BankAccountService {
         List<String> listToGo = new ArrayList<>();
         String tempAccount;
         for (HashMap.Entry entry : handledAccounts.entrySet()) {
-            tempAccount = entry.getKey() + " " + entry.getValue();
+            tempAccount = entry.getKey() + " " + entry.getValue().toString();
             listToGo.add(tempAccount);
         }
         return listToGo;

@@ -24,4 +24,9 @@ public class BankAccount {
         this.balance = balance;
         this.animalType = animalType;
     }
+
+    @Override
+    public String toString() {
+        return balance + " " + animalType;
+    }
 }

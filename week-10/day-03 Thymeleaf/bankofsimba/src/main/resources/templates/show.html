@@ -7,9 +7,22 @@
 </head>
 <body>
 <div th:text="${firstAccount.getBalanceTwoDecimal()} + 'AP(African Paw) ' + ${firstAccount.getAnimalType()}" ></div>
-<table border="1">
-    <tr style="background-color:darkorange"><th>Owner</th><th>Balance</th><th>Breed</th></tr>
-    <tr th:each="account : ${accountList}"><td th:text="${account}" /><td>bú</td><td></td></tr>
+<table border="1" bordercolor="orange">
+    <tr style="background-color:darkorange">
+        <th>No.</th>
+        <th>Owner</th>
+        <th>Balance</th>
+        <th>Breed</th>
+        <th>King?</th>
+    </tr>
+    <tr th:each="account : ${accountList}">
+        <td th:text="${accountStat.index} + 1" />
+        <td th:text="${account.split(' ')[0]}" />
+        <td th:text="${account.split(' ')[1]}" />
+        <td th:text="${account.split(' ')[2]}" />
+        <td><p th:if="${account.split(' ')[0] == 'Simba'}">Yes, he's the King!</p>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
