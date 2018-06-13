@@ -26,8 +26,7 @@ public class BankAccountController {
 
     @GetMapping("/show")
     public String showAccount(Model model, @RequestParam("owner") String owner) {
-        model.addAttribute("owner", owner);
-        model.addAttribute("firstAccount", bankAccountService.getBankAccount(owner));
+        model.addAttribute("searchedAccount", bankAccountService.getBankAccount(owner));
         model.addAttribute("accountList", bankAccountService.getAllBankAccounts());
         System.out.println(BankAccountService.getAllBankAccounts().get(1));
         return "show";

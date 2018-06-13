@@ -3,11 +3,25 @@ package com.greenfoxacademy.bankofsimba.Model;
 import java.text.DecimalFormat;
 
 public class BankAccount {
+    private String owner;
     private double balance;
     private String animalType;
+    private boolean isKing;
+    private boolean isGood;
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public boolean isKing() {
+        return isKing;
+    }
+
+    public boolean isGood() {
+        return isGood;
+    }
 
     public double getBalance() {
-        DecimalFormat df = new DecimalFormat("####0.00");
         return balance;
     }
 
@@ -20,13 +34,16 @@ public class BankAccount {
         return animalType;
     }
 
-    public BankAccount(double balance, String animalType) {
+    public BankAccount(String owner, double balance, String animalType, boolean isKing, boolean isGood) {
+        this.owner = owner;
         this.balance = balance;
         this.animalType = animalType;
+        this.isKing = isKing;
+        this.isGood = isGood;
     }
 
     @Override
     public String toString() {
-        return balance + " " + animalType;
+        return owner + " " + balance + " " + animalType;
     }
 }
