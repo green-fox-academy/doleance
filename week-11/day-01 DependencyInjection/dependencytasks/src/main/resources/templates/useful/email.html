@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Valid e-mail checker</title>
+</head>
+<body>
+<!--ToDo: ${email} is redundant. I want to read it before the emailIsOkay condition, but I don't know how to. Help? -->
+<p th:style="${emailIsOkay} ? 'color:limegreen' : 'color:red'"
+   th:text="${emailIsOkay} ? ${email} + ' is a valid e-mail.' : ${email} + ' isn\'t a valid e-mail.'" />
+</body>
+</html>
