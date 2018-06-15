@@ -34,15 +34,14 @@ public class usefulController {
     }
 
     @GetMapping("/useful/encode")
-    @ResponseBody
-    public String encoding (@RequestParam(name="text") String text, @RequestParam(name="number") int number, Model model){
-        String fineText = utilityService.caesar(text, number);
-        return fineText;
+    public String encoding (Model model){
+        return "useful/encode";
     }
 
     @GetMapping("/useful/decode")
     @ResponseBody
-    public String decoding (@RequestParam(name="text") String text, @RequestParam(name="number") int number, Model model){
+    public String decoding (@RequestParam(name="text") String text,
+                            @RequestParam(name="number") int number, Model model){
         String fineText = utilityService.caesar(text, -number);
         return fineText;
     }
