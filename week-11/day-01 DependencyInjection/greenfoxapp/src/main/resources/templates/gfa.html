@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Fox Application</title>
+</head>
+<body>
+<div style="background-color: lightblue; width:100%;" th:text="'There are ' + ${counter} + ' students here.'"/>
+<h1>Welcome!</h1>
+<div>Please, choose from the options below:</div>
+<ul>
+    <li><a href="/gfa/list">Student's list</a></li>
+    <li>Add new student</li>
+    <li>Find student</li>
+</ul>
+</body>
+</html>
