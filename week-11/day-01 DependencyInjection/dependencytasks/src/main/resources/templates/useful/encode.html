@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Encoding Upgrade</title>
 </head>
 <body>
-<form>
-    <textarea rows="8" cols="70">Write here the text you want to encode.</textarea>
+<form action="#" th:action="@{/useful/encode}" method="post">
+    <textarea rows="8" cols="70" name="wallOfTextToEncode">Write here the text you want to encode.</textarea>
+    <br />
+    <input type="text" id="textToEncode" name="textToEncode" width="300" value="Write here first, maybe I can reach this thing." />
+    <br />
     <input type="submit" value="Encode" />
 </form>
+<div th:text="${encodedText} == null ? ${encodedText} : 'There isn\'t anything to encode.'" />
 </body>
 </html>

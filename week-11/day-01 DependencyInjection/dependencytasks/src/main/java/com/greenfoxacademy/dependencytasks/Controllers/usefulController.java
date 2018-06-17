@@ -4,9 +4,7 @@ import com.greenfoxacademy.dependencytasks.Service.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class usefulController {
@@ -34,7 +32,16 @@ public class usefulController {
     }
 
     @GetMapping("/useful/encode")
-    public String encoding (Model model){
+    public String encoded (Model model, @ModelAttribute(value = "textToEncode") String text){
+        String encodedText = utilityService.caesar(text, 1);
+        model.addAttribute("encodedText", encodedText);
+        return "useful/encode";
+    }
+
+    @PostMapping("/useful/encode")
+    public String encoding (Model model, @ModelAttribute(value = "textToEncode") String text){
+        String encodedText = utilityService.caesar(text, 1);
+        model.addAttribute("encodedText", encodedText);
         return "useful/encode";
     }
 
