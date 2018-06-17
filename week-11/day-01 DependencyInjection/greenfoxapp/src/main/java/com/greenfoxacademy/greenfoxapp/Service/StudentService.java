@@ -27,4 +27,16 @@ public class StudentService {
     public int count() {
         return names.size();
     }
+
+    public boolean findStudent(String studentName) {
+        int i = 0;
+        while ((i < names.size()) && (!names.get(i).equals(studentName))) {
+            i++;
+        }
+        if (i < names.size()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GFA - Add Student</title>
+</head>
+<body>
+<form action="#" th:action="@{/gfa/check}" method="post">
+    <label for="name">The student you looking for:</label>
+    <input id="name" type="text" name="name" />
+    <input type="submit" name="submit" value="Search" />
+</form>
+<div th:text="${isStudentFound} != null ? ${studentName} + ' is a student of ours.' : 'We don\'t have a student called' + ${studentName}" />
+</body>
+</html>

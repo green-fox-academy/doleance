@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebController {
@@ -25,9 +28,27 @@ public class WebController {
     }
 
     @GetMapping("/gfa/add")
-    public String addStudent(Model model) {
-
+    public String addStudentForm() {
         return "gfa/add";
+    }
+
+    @PostMapping("/gfa/add")
+    public String addStudent(@ModelAttribute(value = "name") String studentName) {
+        System.out.println(studentName);
+        studentService.save(studentName);
+        return "redirect:/gfa/list";
+    }
+
+    @GetMapping("/gfa/check")
+    public String findingStudent(@RequestParam("name") String studentName, Model model) {
+        model.addAttribute("studentName", studentName);
+        model.addAttribute("isStudentFound",studentService.findStudent(studentName));
+        return "gfa/check";
+    }
+
+    @PostMapping("/gfa/check")
+    public String lookingForStudent(@ModelAttribute(value = "name") String studentName) {
+        return "gfa/check width name= " + studentName;
     }
 
 }

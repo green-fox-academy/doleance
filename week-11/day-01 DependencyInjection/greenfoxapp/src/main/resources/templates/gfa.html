@@ -5,13 +5,13 @@
     <title>Green Fox Application</title>
 </head>
 <body>
-<div style="background-color: lightblue; width:100%;" th:text="'There are ' + ${counter} + ' students here.'"/>
+<div style="background-color: lightblue; width:100%;" th:text="'We have ' + ${counter} + ' students in this school.'"/>
 <h1>Welcome!</h1>
 <div>Please, choose from the options below:</div>
 <ul>
     <li><a href="/gfa/list">Student's list</a></li>
-    <li>Add new student</li>
-    <li>Find student</li>
+    <li><a href="/gfa/add">Add new student</a></li>
+    <li><a href="/gfa/check">Find student</a></li>
 </ul>
 </body>
 </html>
