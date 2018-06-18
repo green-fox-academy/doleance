@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+</head>
+<body>
+<h1>Things to do:</h1>
+<table cellspacing="2">
+    <tr style="background-color: lightgreen; font-style: oblique; color:white;">
+        <th>No.</th><th>What to do</th><th>Is it done?</th><th>Is it urgent?</th>
+    </tr>
+    <tr th:each="todo : ${todos}" align="center">
+        <td th:text="${todo.id}" />
+        <td th:text="${todo.title}" />
+        <td th:text="${todo.done}" />
+        <td th:text="${todo.urgent}" />
+    </tr>
+</table>
+</body>
+</html>

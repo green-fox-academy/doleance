@@ -40,7 +40,7 @@ public class WebController {
     }
 
     @GetMapping("/gfa/check")
-    public String findingStudent(@RequestParam("name") String studentName, Model model) {
+    public String findingStudent(@RequestParam(value = "studentName", required = false) String studentName, Model model) {
         model.addAttribute("studentName", studentName);
         model.addAttribute("isStudentFound",studentService.findStudent(studentName));
         return "gfa/check";
@@ -48,7 +48,7 @@ public class WebController {
 
     @PostMapping("/gfa/check")
     public String lookingForStudent(@ModelAttribute(value = "name") String studentName) {
-        return "gfa/check width name= " + studentName;
+        return "redirect:/gfa/check?name=" + studentName;
     }
 
 }
