@@ -40,8 +40,10 @@ public class WebController {
     }
 
     @GetMapping("/gfa/check")
-    public String findingStudent(@RequestParam(value = "studentName", required = false) String studentName, Model model) {
+    public String findingStudent(@RequestParam(value = "name", required = false) String studentName, Model model) {
         model.addAttribute("studentName", studentName);
+        System.out.println(studentName);
+        System.out.println(studentService.findStudent(studentName));
         model.addAttribute("isStudentFound",studentService.findStudent(studentName));
         return "gfa/check";
     }
