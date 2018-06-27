@@ -1,12 +1,11 @@
 package com.greenfoxacademy.bankofsimba.Controllers;
 
+import com.greenfoxacademy.bankofsimba.Model.BankAccount;
 import com.greenfoxacademy.bankofsimba.Service.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BankAccountController {
@@ -25,11 +24,24 @@ public class BankAccountController {
     }
 
     @GetMapping("/show")
-    public String showAccount(Model model, @RequestParam("owner") String owner) {
-        model.addAttribute("searchedAccount", bankAccountService.getBankAccount(owner));
+    public String showAccount(Model model, @RequestParam(value = "owner", required = false) String owner) {
+        if (owner != null) {
+            model.addAttribute("searchedAccount", bankAccountService.getBankAccount(owner));
+        }
         model.addAttribute("accountList", bankAccountService.getAllBankAccounts());
-        System.out.println(BankAccountService.getAllBankAccounts().get(1));
         return "show";
+    }
+
+    @PostMapping("/increase_balance/{owner}")
+    public String increaseBalance(@PathVariable(value = "owner") String owner) {
+        bankAccountService.increase(owner);
+        return "redirect:/show";
+    }
+
+    @PostMapping("/add")
+    public String addNewOwner(@ModelAttribute(value = "newbie") BankAccount newbie) {
+        bankAccountService.addBankAccount(newbie);
+        return "redirect:/show";
     }
 
 }

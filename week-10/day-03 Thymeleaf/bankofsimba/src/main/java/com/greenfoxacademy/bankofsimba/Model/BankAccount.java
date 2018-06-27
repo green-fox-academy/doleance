@@ -25,6 +25,10 @@ public class BankAccount {
         return balance;
     }
 
+    public void setBalance(long value) {
+        balance += value;
+    }
+
     public String getBalanceTwoDecimal() {
         DecimalFormat df = new DecimalFormat("####0.00");
         return df.format(balance);

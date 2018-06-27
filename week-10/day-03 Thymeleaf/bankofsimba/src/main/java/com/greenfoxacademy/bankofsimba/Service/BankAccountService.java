@@ -47,4 +47,16 @@ public class BankAccountService {
         handledAccounts.add(new BankAccount("Kiara", 800.0, "lion", false, true));
     }
 
+    public void increase(String owner) {
+        for (int i = 0; i < handledAccounts.size(); i++) {
+            if (handledAccounts.get(i).getOwner().equals(owner)) {
+                if (handledAccounts.get(i).isKing()) {
+                    handledAccounts.get(i).setBalance(100);
+                } else {
+                    handledAccounts.get(i).setBalance(10);
+                }
+                break;
+            }
+        }
+    }
 }
