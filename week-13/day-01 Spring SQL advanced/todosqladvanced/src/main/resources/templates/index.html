@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+</head>
+<body>
+<h1>Search:</h1>
+<form action="#" th:action="@{/index}" method="get">
+    <input type="text" name="keyword" />
+    <input type="submit" value="Search" />
+</form>
+<div th:each="match : ${matches}">
+    <p th:text="${match.id}" />
+    <p th:text="${match.title}" />
+    <p th:text="${match.description}" />
+    <p th:text="${match.content}" />
+    <p th:text="${match.done}" />
+    <p th:text="${match.urgent}" />
+</div>
+<h1>Things to do:</h1>
+<table cellspacing="2">
+    <tr style="background-color: lightgreen; font-style: oblique; color:white;">
+        <th>No.</th><th>Title</th><th>Description</th><th width="200px">Content</th><th>Is it done?</th><th>Is it urgent?</th>
+    </tr>
+    <tr th:each="todo : ${todos}" align="center">
+        <td th:text="${todo.id}" />
+        <td th:text="${todo.title}" />
+        <td th:text="${todo.description}" />
+        <td th:text="${todo.content}" />
+        <td th:text="${todo.done}" />
+        <td th:text="${todo.urgent}" />
+    </tr>
+</table>
+</body>
+</html>
