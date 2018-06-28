@@ -51,9 +51,9 @@ public class BankAccountService {
         for (int i = 0; i < handledAccounts.size(); i++) {
             if (handledAccounts.get(i).getOwner().equals(owner)) {
                 if (handledAccounts.get(i).isKing()) {
-                    handledAccounts.get(i).setBalance(100);
+                    handledAccounts.get(i).setBalance(100L);
                 } else {
-                    handledAccounts.get(i).setBalance(10);
+                    handledAccounts.get(i).setBalance(10L);
                 }
                 break;
             }

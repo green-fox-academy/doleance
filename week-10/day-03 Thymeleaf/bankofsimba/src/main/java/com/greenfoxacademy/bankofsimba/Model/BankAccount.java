@@ -46,6 +46,9 @@ public class BankAccount {
         this.isGood = isGood;
     }
 
+    public BankAccount() {
+    }
+
     @Override
     public String toString() {
         return owner + " " + balance + " " + animalType;

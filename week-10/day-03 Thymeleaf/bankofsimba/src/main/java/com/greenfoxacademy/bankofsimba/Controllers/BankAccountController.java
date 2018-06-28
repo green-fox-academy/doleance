@@ -29,6 +29,7 @@ public class BankAccountController {
             model.addAttribute("searchedAccount", bankAccountService.getBankAccount(owner));
         }
         model.addAttribute("accountList", bankAccountService.getAllBankAccounts());
+        model.addAttribute("newbie", new BankAccount());
         return "show";
     }
 
@@ -39,7 +40,7 @@ public class BankAccountController {
     }
 
     @PostMapping("/add")
-    public String addNewOwner(@ModelAttribute(value = "newbie") BankAccount newbie) {
+    public String addNewOwner(@ModelAttribute BankAccount newbie) {
         bankAccountService.addBankAccount(newbie);
         return "redirect:/show";
     }

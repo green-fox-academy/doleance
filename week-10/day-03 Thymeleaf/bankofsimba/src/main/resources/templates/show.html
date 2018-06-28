@@ -8,6 +8,7 @@
 <body >
 <div th:if="${searchedAccount} != null" th:text="${searchedAccount.getOwner()} + ${searchedAccount.getBalanceTwoDecimal()} +
 'AP(African Paw) ' + ${searchedAccount.getAnimalType()}" />
+<form action="#" th:action="@{'/add'}" th:object="${newbie}" method="post" id="newbie">
 <table border="1" bordercolor="orange">
     <tr style="background-color:darkorange">
         <th>No.</th>
@@ -33,29 +34,29 @@
         </td>
     </tr>
     <tr>
-        <form action="#" th:action="@{'/add'}" th:object="${newbie}" method="post">
-            <td>
-            </td>
-            <td>
-                <input type="text" th:field="*{owner}" />
-            </td>
-            <td>
-                <input type="text" th:field="*{balance}" />
-            </td>
-            <td>
-                <input type="text" th:field="*{animalType}" />
-            </td>
-            <td>
-                <input type="checkbox" th:field="*{isKing}" />
-            </td>
-            <td>
-                <input type="checkbox" th:field="*{isGood}" />
-            </td>
-            <td>
-                <input type="submit" value="New Client" />
-            </td>
-        </form>
-    </tr>
-</table>
-</body>
-</html>
+        <td>
+
+        </td>
+        <td>
+            <input type="text" th:field="*{owner}" form="newbie" />
+        </td>
+        <td>
+         <!--   <input type="text" th:field="*{balance}" form="newbie" /> -->
+        </td>
+        <td>
+            <input type="text" th:field="*{animalType}" form="newbie" />
+        </td>
+        <td>
+            <!--  <input type="checkbox" th:field="*{isKing}" form="newbie" />-->
+          </td>
+          <td>
+         <!--     <input type="checkbox" th:field="*{isGood}" form="newbie" />-->
+          </td>
+          <td>
+              <input type="submit" value="New Client" form="newbie" />
+          </td>
+      </tr>
+  </table>
+  </form>
+  </body>
+  </html>
