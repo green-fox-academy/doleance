@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantastic Fox Club</title>
+</head>
+<body>
+<ul>
+    <li><a href="">Information</a></li>
+</ul>
+<img src="greenfox.png" />
+<p>This is ${name}, currently living on ${food} and ${drink}. Knows ${trickCount} tricks.</p>
+<h1>Known tricks:</h1>
+<ul th:each="trick : ${tricks}">
+    <li th:text="${trick}" />
+</ul>
+</body>
+</html>
