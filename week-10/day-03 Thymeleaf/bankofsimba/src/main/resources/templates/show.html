@@ -41,16 +41,19 @@
             <input type="text" th:field="*{owner}" form="newbie" />
         </td>
         <td>
-         <!--   <input type="text" th:field="*{balance}" form="newbie" /> -->
+     <!--       <input type="number" th:field="*{balance}"  step="any" form="newbie" /> -->
         </td>
         <td>
             <input type="text" th:field="*{animalType}" form="newbie" />
         </td>
         <td>
-            <!--  <input type="checkbox" th:field="*{isKing}" form="newbie" />-->
+            <select name="isGood">
+                <option th:value="true">Good Guy</option>
+                <option th:value="false">Bad Guy</option>
+            </select>
           </td>
           <td>
-         <!--     <input type="checkbox" th:field="*{isGood}" form="newbie" />-->
+              <input type="checkbox" th:field="*{isKing}" th:value="true" form="newbie" />
           </td>
           <td>
               <input type="submit" value="New Client" form="newbie" />

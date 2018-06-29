@@ -24,9 +24,10 @@ public class BankAccountController {
     }
 
     @GetMapping("/show")
-    public String showAccount(Model model, @RequestParam(value = "owner", required = false) String owner) {
-        if (owner != null) {
-            model.addAttribute("searchedAccount", bankAccountService.getBankAccount(owner));
+    public String showAccount(Model model, @RequestParam(value = "owner", required = false) String name,
+                              @ModelAttribute(value="newbie") BankAccount newbie) {
+        if (name != null) {
+            model.addAttribute("searchedAccount", bankAccountService.getBankAccount(name));
         }
         model.addAttribute("accountList", bankAccountService.getAllBankAccounts());
         model.addAttribute("newbie", new BankAccount());
