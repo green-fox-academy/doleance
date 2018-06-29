@@ -24,8 +24,7 @@ public class BankAccountController {
     }
 
     @GetMapping("/show")
-    public String showAccount(Model model, @RequestParam(value = "owner", required = false) String name,
-                              @ModelAttribute(value="newbie") BankAccount newbie) {
+    public String showAccount(Model model, @RequestParam(value = "owner", required = false) String name) {
         if (name != null) {
             model.addAttribute("searchedAccount", bankAccountService.getBankAccount(name));
         }
@@ -41,7 +40,9 @@ public class BankAccountController {
     }
 
     @PostMapping("/add")
-    public String addNewOwner(@ModelAttribute BankAccount newbie) {
+    public String addNewOwner(@ModelAttribute BankAccount newbie,
+                              @ModelAttribute(value = "isGood") boolean isGood) {
+
         bankAccountService.addBankAccount(newbie);
         return "redirect:/show";
     }

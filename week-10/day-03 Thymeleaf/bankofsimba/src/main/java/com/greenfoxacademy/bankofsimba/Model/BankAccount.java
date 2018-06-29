@@ -9,6 +9,22 @@ public class BankAccount {
     private boolean isKing;
     private boolean isGood;
 
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
+    }
+
+    public void setKing(boolean king) {
+        isKing = king;
+    }
+
+    public void setGood(boolean good) {
+        isGood = good;
+    }
+
     public String getOwner() {
         return owner;
     }
@@ -21,11 +37,15 @@ public class BankAccount {
         return isGood;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(long value) {
+    public void increaseBalance(long value) {
         balance += value;
     }
 
