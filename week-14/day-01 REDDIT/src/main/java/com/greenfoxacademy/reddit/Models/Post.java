@@ -7,8 +7,8 @@ import javax.persistence.Id;
 @Entity
 public class Post {
 
-    @GeneratedValue
     @Id
+    @GeneratedValue
     Long id;
     String title;
     String url;
@@ -52,6 +52,21 @@ public class Post {
     }
 
     public void setScore(int score) {
+        this.score = score;
+    }
+
+    Post() {
+    }
+
+    public Post(String title, String url) {
+        this.title = title;
+        this.url = url;
+    }
+
+    public Post(String title, String url, Long timestamp, Integer score) {
+        this.title = title;
+        this.url = url;
+        this.timestamp = timestamp;
         this.score = score;
     }
 }
