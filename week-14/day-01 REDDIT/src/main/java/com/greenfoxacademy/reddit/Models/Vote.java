@@ -1,59 +1,28 @@
 package com.greenfoxacademy.reddit.Models;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@IdClass(Vote.VotePK.class)
 public class Vote {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name="userId")
-    //@ManyToMany(targetEntity = User.class)
-    Long userId;
+    @GeneratedValue
+    Long voteId;
 
-    @Id
-    //@ManyToMany(targetEntity = Post.class)
-    Long postId;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user")
+    User user;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "post")
+    Post post;
+
+    boolean isItUpVote;
 
     public Vote() {
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
-
-    public class VotePK implements Serializable {
-        protected Long userId;
-        protected Long postId;
-
-        public VotePK() {
-
-        }
-
-        @Override
-        public int hashCode() {
-            return super.hashCode();
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj);
-        }
-    }
 }
 
 
