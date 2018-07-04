@@ -1,8 +1,12 @@
 package com.greenfoxacademy.reddit.Models;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 public class Post {
@@ -12,15 +16,11 @@ public class Post {
     Long id;
     String title;
     String url;
-    Long timestamp;
+    Instant timestamp;
     Integer score;
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -39,15 +39,15 @@ public class Post {
         this.url = url;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public Long getTimestamp() {
+        return timestamp.getEpochSecond();
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -56,17 +56,20 @@ public class Post {
     }
 
     Post() {
+        this.timestamp = Instant.now();
+        this.score = 0;
     }
 
     public Post(String title, String url) {
+        this();
         this.title = title;
         this.url = url;
     }
 
-    public Post(String title, String url, Long timestamp, Integer score) {
+    public Post(String title, String url, Integer score) {
+        this();
         this.title = title;
         this.url = url;
-        this.timestamp = timestamp;
         this.score = score;
     }
 }
