@@ -5,7 +5,6 @@ import org.hibernate.annotations.Proxy;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
@@ -18,6 +17,7 @@ public class Post {
     String url;
     Instant timestamp;
     Integer score;
+    String owner;
 
     public Long getId() {
         return id;
@@ -55,6 +55,14 @@ public class Post {
         this.score = score;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
     public void incrementScore() {
         score++;
     }
@@ -68,16 +76,11 @@ public class Post {
         this.score = 0;
     }
 
-    public Post(String title, String url) {
-        this();
-        this.title = title;
-        this.url = url;
-    }
-
-    public Post(String title, String url, Integer score) {
+    public Post(String title, String url, Integer score, String owner) {
         this();
         this.title = title;
         this.url = url;
         this.score = score;
+        this.owner = owner;
     }
 }
