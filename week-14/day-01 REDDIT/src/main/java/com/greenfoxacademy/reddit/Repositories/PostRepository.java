@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
-    List<Post> findAllPost();
+    //List<Post> findAll();
+    //List<Post> findAllPost();
 }

@@ -10,4 +10,5 @@ public interface PostService {
     void addNewPost(Post postToSave);
     void increaseScore(Post postToUpvote);
     void decreaseScore(Post postToDownvote);
+    void deletePost(Post postToDelete);
 }

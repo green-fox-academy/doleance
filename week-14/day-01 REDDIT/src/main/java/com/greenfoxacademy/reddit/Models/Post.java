@@ -16,6 +16,7 @@ public class Post {
     String title;
     String url;
     Instant timestamp;
+    Instant lastupdated;
     Integer score;
     String owner;
 
@@ -45,6 +46,14 @@ public class Post {
 
     public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Instant getLastupdated() {
+        return lastupdated;
+    }
+
+    public void setLastupdated(Instant lastupdated) {
+        this.lastupdated = lastupdated;
     }
 
     public Integer getScore() {
