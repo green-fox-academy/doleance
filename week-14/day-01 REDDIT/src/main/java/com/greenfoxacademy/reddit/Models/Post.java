@@ -1,7 +1,5 @@
 package com.greenfoxacademy.reddit.Models;
 
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +14,7 @@ public class Post {
     String title;
     String url;
     Instant timestamp;
-    Instant lastupdated;
+    Instant lastUpdated;
     Integer score;
     String owner;
 
@@ -44,16 +42,24 @@ public class Post {
         return timestamp.getEpochSecond();
     }
 
+    public Instant readTimestamp() {
+        return timestamp;
+    }
+
     public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
-    public Instant getLastupdated() {
-        return lastupdated;
+    public Long getLastUpdated() {
+        if (lastUpdated == null) {
+            return null;
+        } else {
+            return lastUpdated.getEpochSecond();
+        }
     }
 
-    public void setLastupdated(Instant lastupdated) {
-        this.lastupdated = lastupdated;
+    public void setLastUpdated() {
+        this.lastUpdated = Instant.now();
     }
 
     public Integer getScore() {

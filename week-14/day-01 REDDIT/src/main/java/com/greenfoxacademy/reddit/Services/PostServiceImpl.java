@@ -47,4 +47,14 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Post postToDelete) {
         postRepository.delete(postToDelete);
     }
+
+    @Override
+    public void updatePost(Post postToUpdate) {
+        Post oldPost = postRepository.findById(postToUpdate.getId()).get();
+        postToUpdate.setLastUpdated();
+        postToUpdate.setScore(oldPost.getScore());
+        postToUpdate.setTimestamp(oldPost.readTimestamp());
+        postToUpdate.setOwner(oldPost.getOwner());
+        postRepository.save(postToUpdate);
+    }
 }

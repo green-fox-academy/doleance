@@ -24,13 +24,13 @@ public class Controller {
     }
 
     @PostMapping("/posts")
-    public List<Post> postSomething(@RequestBody Post postsToAdd,
+    public List<Post> postSomething(@RequestBody Post[] postsToAdd,
         @RequestHeader("username") String username) {
-        //for ( Post post : postsToAdd ) {
-        postsToAdd.setOwner(username);
-        User newUser = new User(username);
-        postServiceImpl.addNewPost(postsToAdd);
-       // }
+        for ( Post post : postsToAdd ) {
+            post.setOwner(username);
+            User newUser = new User(username);
+            postServiceImpl.addNewPost(post);
+        }
         return postServiceImpl.getAllPosts();
     }
 
@@ -51,6 +51,15 @@ public class Controller {
                                  @RequestHeader("username") String username) {
         if (username.equals(postServiceImpl.getPostById(id).getOwner())) {
             postServiceImpl.deletePost(postServiceImpl.getPostById(id));
+        }
+        return postServiceImpl.getAllPosts();
+    }
+
+    @PutMapping("/posts/{id}")
+    public List<Post> updatePost(@RequestBody Post postToUpdate,
+                                 @RequestHeader("username") String username) {
+        if (username.equals(postToUpdate.getOwner())) {
+            postServiceImpl.updatePost(postToUpdate);
         }
         return postServiceImpl.getAllPosts();
     }
