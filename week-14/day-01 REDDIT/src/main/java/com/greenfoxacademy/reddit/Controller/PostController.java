@@ -4,10 +4,7 @@ import com.greenfoxacademy.reddit.Models.Post;
 import com.greenfoxacademy.reddit.Services.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +26,18 @@ public class PostController {
        // }
         return postServiceImpl.getAllPosts();
     }
+
+    @PutMapping("/posts/{id}/upvote")
+    public List<Post> upvote(@PathVariable Long id) {
+        postServiceImpl.increaseScore(postServiceImpl.getPostById(id));
+        return postServiceImpl.getAllPosts();
+    }
+
+    @PutMapping("/posts/{id}/downvote")
+    public List<Post> downvote(@PathVariable Long id) {
+        postServiceImpl.decreaseScore(postServiceImpl.getPostById(id));
+        return postServiceImpl.getAllPosts();
+    }
+
+
 }

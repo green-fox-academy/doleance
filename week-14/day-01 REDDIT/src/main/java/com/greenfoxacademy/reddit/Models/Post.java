@@ -55,6 +55,14 @@ public class Post {
         this.score = score;
     }
 
+    public void incrementScore() {
+        score++;
+    }
+
+    public void decrementScore() {
+        score--;
+    }
+
     Post() {
         this.timestamp = Instant.now();
         this.score = 0;
