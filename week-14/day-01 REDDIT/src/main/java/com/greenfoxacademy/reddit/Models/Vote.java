@@ -10,12 +10,9 @@ public class Vote {
     @GeneratedValue
     Long voteId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user")
+    @OneToOne
     User user;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "post")
+    @OneToOne
     Post post;
 
     boolean isItUpVote;
@@ -23,6 +20,11 @@ public class Vote {
     public Vote() {
     }
 
+    public Vote(User user, Post post, boolean isItUpVote) {
+        this.user = user;
+        this.post = post;
+        this.isItUpVote = isItUpVote;
+    }
 }
 
 

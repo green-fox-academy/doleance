@@ -2,8 +2,10 @@ package com.greenfoxacademy.reddit.Controllers;
 
 import com.greenfoxacademy.reddit.Models.Post;
 import com.greenfoxacademy.reddit.Models.User;
+import com.greenfoxacademy.reddit.Models.Vote;
 import com.greenfoxacademy.reddit.Services.PostServiceImpl;
 import com.greenfoxacademy.reddit.Services.UserServiceImpl;
+import com.greenfoxacademy.reddit.Services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ public class Controller {
 
     @Autowired
     UserServiceImpl userServiceImpl;
+
+    @Autowired
+    VoteService voteService;
 
     @GetMapping("/posts")
     public List<Post> getPosts() {
@@ -35,14 +40,22 @@ public class Controller {
     }
 
     @PutMapping("/posts/{id}/upvote")
-    public List<Post> upvote(@PathVariable Long id) {
-        postServiceImpl.increaseScore(postServiceImpl.getPostById(id));
+    public List<Post> upvote(@PathVariable Long id,
+                             @RequestHeader("username") String username) {
+        Post thisPost = postServiceImpl.getPostById(id);
+        User thisUser = userServiceImpl.getUserByUsername(username);
+        voteService.voting(thisUser, thisPost, true);
+        postServiceImpl.increaseScore(thisPost);
         return postServiceImpl.getAllPosts();
     }
 
     @PutMapping("/posts/{id}/downvote")
-    public List<Post> downvote(@PathVariable Long id) {
-        postServiceImpl.decreaseScore(postServiceImpl.getPostById(id));
+    public List<Post> downvote(@PathVariable Long id,
+                               @RequestHeader("username") String username) {
+        Post thisPost = postServiceImpl.getPostById(id);
+        User thisUser = userServiceImpl.getUserByUsername(username);
+        voteService.voting(thisUser, thisPost, false);
+        postServiceImpl.decreaseScore(thisPost);
         return postServiceImpl.getAllPosts();
     }
 
