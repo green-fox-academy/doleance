@@ -2,6 +2,7 @@ package com.greenfoxacademy.reddit.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.Instant;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Post {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String title;
     String url;
