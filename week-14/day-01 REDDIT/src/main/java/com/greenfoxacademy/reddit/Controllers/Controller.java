@@ -44,8 +44,15 @@ public class Controller {
                              @RequestHeader("username") String username) {
         Post thisPost = postServiceImpl.getPostById(id);
         User thisUser = userServiceImpl.getUserByUsername(username);
-        voteService.voting(thisUser, thisPost, true);
-        postServiceImpl.increaseScore(thisPost);
+        Vote thisVote = voteService.getVoteByUserAndPost(username, id);
+        if (thisVote == null) {
+            voteService.voting(thisUser, thisPost, true);
+            postServiceImpl.increaseScore(thisPost);
+        } else if (!thisVote.isItUpVote()) {
+            postServiceImpl.increaseScore(thisPost);
+            postServiceImpl.increaseScore(thisPost);
+            thisVote.setItUpVote(false);
+        }
         return postServiceImpl.getAllPosts();
     }
 
@@ -54,8 +61,32 @@ public class Controller {
                                @RequestHeader("username") String username) {
         Post thisPost = postServiceImpl.getPostById(id);
         User thisUser = userServiceImpl.getUserByUsername(username);
-        voteService.voting(thisUser, thisPost, false);
-        postServiceImpl.decreaseScore(thisPost);
+        Vote thisVote = voteService.getVoteByUserAndPost(username, id);
+        if (thisVote == null) {
+            postServiceImpl.decreaseScore(thisPost);
+            voteService.voting(thisUser, thisPost, false);
+        } else if (thisVote.isItUpVote()) {
+            postServiceImpl.decreaseScore(thisPost);
+            postServiceImpl.decreaseScore(thisPost);
+            thisVote.setItUpVote(true);
+        }
+        return postServiceImpl.getAllPosts();
+    }
+
+    //ToDo Fix this thing... I think the problem is with the cascade. Or the relation.
+    @PutMapping("/posts/{id}/cancelvote")
+    public List<Post> cancelvote(@PathVariable Long id,
+                               @RequestHeader("username") String username) {
+        Post thisPost = postServiceImpl.getPostById(id);
+        Vote thisVote = voteService.getVoteByUserAndPost(username, id);
+        if (thisVote != null) {
+            if (thisVote.isItUpVote()) {
+                postServiceImpl.decreaseScore(thisPost);
+            } else {
+                postServiceImpl.increaseScore(thisPost);
+            }
+            voteService.cancelVote(thisVote);
+        }
         return postServiceImpl.getAllPosts();
     }
 
@@ -69,8 +100,9 @@ public class Controller {
     }
 
     @PutMapping("/posts/{id}")
-    public List<Post> updatePost(@RequestBody Post postToUpdate,
+    public List<Post> updatePost(@PathVariable Long id,
                                  @RequestHeader("username") String username) {
+        Post postToUpdate = postServiceImpl.getPostById(id);
         if (username.equals(postToUpdate.getOwner())) {
             postServiceImpl.updatePost(postToUpdate);
         }

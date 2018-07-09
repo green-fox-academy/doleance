@@ -10,9 +10,9 @@ public class Vote {
     @GeneratedValue
     Long voteId;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     User user;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Post post;
 
     boolean isItUpVote;
@@ -24,6 +24,38 @@ public class Vote {
         this.user = user;
         this.post = post;
         this.isItUpVote = isItUpVote;
+    }
+
+    public Long getVoteId() {
+        return voteId;
+    }
+
+    public void setVoteId(Long voteId) {
+        this.voteId = voteId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public boolean isItUpVote() {
+        return isItUpVote;
+    }
+
+    public void setItUpVote(boolean itUpVote) {
+        isItUpVote = itUpVote;
     }
 }
 

@@ -30,7 +30,4 @@ public class User {
         this.username = username;
     }
 
-    make sure that every user gets to vote only once on a post
-    and when listing the posts you return the vote of the user for each post (marked as optional in the apispec)
-
 }
