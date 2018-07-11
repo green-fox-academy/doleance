@@ -19,8 +19,7 @@ public class VoteService {
     @Autowired
     UserServiceImpl userService;
 
-    public void voting(User user, Post post, boolean isItUpvote) {
-        Vote vote = new Vote(user, post, isItUpvote);
+    public void voting(Vote vote) {
         voteRepository.save(vote);
     }
 
@@ -29,6 +28,11 @@ public class VoteService {
     }
 
     public void cancelVote(Vote voteToDelete) {
+        if (voteToDelete.isItUpVote()) {
+            postService.decreaseScore(voteToDelete.getPost());
+        } else {
+            postService.increaseScore(voteToDelete.getPost());
+        }
         voteRepository.delete(voteToDelete);
     }
 

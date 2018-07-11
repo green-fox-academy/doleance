@@ -3,16 +3,16 @@ package com.greenfoxacademy.reddit.Models;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name="votes")
 public class Vote {
 
     @Id
     @GeneratedValue
     Long voteId;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     User user;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     Post post;
 
     boolean isItUpVote;

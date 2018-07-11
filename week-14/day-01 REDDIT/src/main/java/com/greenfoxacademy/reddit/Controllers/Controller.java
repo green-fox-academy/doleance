@@ -44,14 +44,18 @@ public class Controller {
                              @RequestHeader("username") String username) {
         Post thisPost = postServiceImpl.getPostById(id);
         User thisUser = userServiceImpl.getUserByUsername(username);
-        Vote thisVote = voteService.getVoteByUserAndPost(username, id);
-        if (thisVote == null) {
-            voteService.voting(thisUser, thisPost, true);
-            postServiceImpl.increaseScore(thisPost);
-        } else if (!thisVote.isItUpVote()) {
-            postServiceImpl.increaseScore(thisPost);
-            postServiceImpl.increaseScore(thisPost);
-            thisVote.setItUpVote(false);
+        if ((thisUser != null) && (thisPost != null)) {
+            Vote thisVote = voteService.getVoteByUserAndPost(username, id);
+            if (thisVote == null) {
+                postServiceImpl.increaseScore(thisPost);
+                thisVote = new Vote(thisUser, thisPost, true);
+                voteService.voting(thisVote);
+            } else if (!thisVote.isItUpVote()) {
+                postServiceImpl.increaseScore(thisPost);
+                postServiceImpl.increaseScore(thisPost);
+                thisVote.setItUpVote(true);
+                voteService.voting(thisVote);
+            }
         }
         return postServiceImpl.getAllPosts();
     }
@@ -61,14 +65,18 @@ public class Controller {
                                @RequestHeader("username") String username) {
         Post thisPost = postServiceImpl.getPostById(id);
         User thisUser = userServiceImpl.getUserByUsername(username);
-        Vote thisVote = voteService.getVoteByUserAndPost(username, id);
-        if (thisVote == null) {
-            postServiceImpl.decreaseScore(thisPost);
-            voteService.voting(thisUser, thisPost, false);
-        } else if (thisVote.isItUpVote()) {
-            postServiceImpl.decreaseScore(thisPost);
-            postServiceImpl.decreaseScore(thisPost);
-            thisVote.setItUpVote(true);
+        if ((thisUser != null) && (thisPost != null)) {
+            Vote thisVote = voteService.getVoteByUserAndPost(username, id);
+            if (thisVote == null) {
+                postServiceImpl.decreaseScore(thisPost);
+                thisVote = new Vote(thisUser, thisPost, false);
+                voteService.voting(thisVote);
+            } else if (thisVote.isItUpVote()) {
+                postServiceImpl.decreaseScore(thisPost);
+                postServiceImpl.decreaseScore(thisPost);
+                thisVote.setItUpVote(false);
+                voteService.voting(thisVote);
+            }
         }
         return postServiceImpl.getAllPosts();
     }
@@ -80,11 +88,6 @@ public class Controller {
         Post thisPost = postServiceImpl.getPostById(id);
         Vote thisVote = voteService.getVoteByUserAndPost(username, id);
         if (thisVote != null) {
-            if (thisVote.isItUpVote()) {
-                postServiceImpl.decreaseScore(thisPost);
-            } else {
-                postServiceImpl.increaseScore(thisPost);
-            }
             voteService.cancelVote(thisVote);
         }
         return postServiceImpl.getAllPosts();

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.time.Instant;
 import java.util.List;
 
-@Entity
+@Entity(name="posts")
 public class Post {
 
     @Id
