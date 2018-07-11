@@ -7,6 +7,9 @@ import com.greenfoxacademy.reddit.Repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class VoteService {
 
@@ -34,6 +37,16 @@ public class VoteService {
             postService.increaseScore(voteToDelete.getPost());
         }
         voteRepository.delete(voteToDelete);
+    }
+
+    public List<Object> getPersonalVoteToo(List<Post> postList, User user) {
+        List<Object> amendedList = new ArrayList<>();
+        for (Post post : postList) {
+            Object amendedPost = new Object();
+            amendedPost = post + voteRepository.findByUserAndPost(user, post).isItUpVote();
+            amendedList.add(amendedPost);
+        }
+        return amendedList;
     }
 
 }
