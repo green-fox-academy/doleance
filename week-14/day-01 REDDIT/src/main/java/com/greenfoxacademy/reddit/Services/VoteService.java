@@ -5,13 +5,16 @@ import com.greenfoxacademy.reddit.Models.User;
 import com.greenfoxacademy.reddit.Models.Vote;
 import com.greenfoxacademy.reddit.Repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.JsonPath;
 import org.springframework.stereotype.Service;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class VoteService {
+public class VoteService implements JsonPath {
 
     @Autowired
     VoteRepository voteRepository;
@@ -40,6 +43,8 @@ public class VoteService {
     }
 
     public List<Object> getPersonalVoteToo(List<Post> postList, User user) {
+        Json
+        Map<String, Json>
         List<Object> amendedList = new ArrayList<>();
         for (Post post : postList) {
             Object amendedPost = new Object();
@@ -49,4 +54,13 @@ public class VoteService {
         return amendedList;
     }
 
+    @Override
+    public String[] value() {
+        return new String[0];
+    }
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
+    }
 }
