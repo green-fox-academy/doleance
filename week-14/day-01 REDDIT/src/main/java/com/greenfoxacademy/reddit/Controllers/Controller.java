@@ -1,5 +1,6 @@
 package com.greenfoxacademy.reddit.Controllers;
 
+import com.greenfoxacademy.reddit.Models.AmendedPost;
 import com.greenfoxacademy.reddit.Models.Post;
 import com.greenfoxacademy.reddit.Models.User;
 import com.greenfoxacademy.reddit.Models.Vote;
@@ -9,6 +10,7 @@ import com.greenfoxacademy.reddit.Services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,8 +26,13 @@ public class Controller {
     VoteService voteService;
 
     @GetMapping("/posts")
-    public List<Post> getPosts() {
-        return postServiceImpl.getAllPosts();
+    public List<AmendedPost> getPosts(@RequestHeader("username") String username) {
+        List<AmendedPost> posts = new ArrayList<>();
+        User user = userServiceImpl.getUserByUsername(username);
+        for ( Post post : postServiceImpl.getAllPosts()) {
+            posts.add(voteService.getPersonalVoteToo(user, post));
+        }
+        return posts;
     }
 
     @PostMapping("/posts")

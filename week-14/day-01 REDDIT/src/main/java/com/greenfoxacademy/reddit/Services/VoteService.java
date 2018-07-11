@@ -1,5 +1,6 @@
 package com.greenfoxacademy.reddit.Services;
 
+import com.greenfoxacademy.reddit.Models.AmendedPost;
 import com.greenfoxacademy.reddit.Models.Post;
 import com.greenfoxacademy.reddit.Models.User;
 import com.greenfoxacademy.reddit.Models.Vote;
@@ -9,9 +10,6 @@ import org.springframework.data.web.JsonPath;
 import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class VoteService implements JsonPath {
@@ -42,16 +40,15 @@ public class VoteService implements JsonPath {
         voteRepository.delete(voteToDelete);
     }
 
-    public List<Object> getPersonalVoteToo(List<Post> postList, User user) {
-        Json
-        Map<String, Json>
-        List<Object> amendedList = new ArrayList<>();
-        for (Post post : postList) {
-            Object amendedPost = new Object();
-            amendedPost = post + voteRepository.findByUserAndPost(user, post).isItUpVote();
-            amendedList.add(amendedPost);
+    public AmendedPost getPersonalVoteToo(User user, Post post) {
+        AmendedPost amendedPost;
+        if (voteRepository.findByUserAndPost(user, post) == null) {
+            amendedPost = new AmendedPost(post, null);
+        } else {
+            boolean personalVote = voteRepository.findByUserAndPost(user, post).isItUpVote();
+            amendedPost = new AmendedPost(post, personalVote);
         }
-        return amendedList;
+        return amendedPost;
     }
 
     @Override
